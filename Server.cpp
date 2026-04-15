@@ -41,6 +41,9 @@ int main(){
         buffer[n]='\0';
         std::string msg(buffer);
         std::string response;
+
+        std::string senderIP=inet_ntoa(clientAddr.sin_addr);
+        std::cout <<"Mesazh nga ["<< senderIP <<"]:" << msg << std::endl;
     }
 
 }
