@@ -72,4 +72,20 @@ int main(){
                     std::string text = msg.substr(second + 1);
 
 
+                    std::ofstream file(filename, std::ios::app);
+                    if (file.is_open()) {
+                        file << text << "\n";
+                        file.flush();
+                        file.close();
+                        response = "Sukses: U shkrua me sukses nga Admini!";
+                        std::cout << "Admini shkruajti ne " << filename << std::endl;
+                    } else {
+                        response = "Gabim: Serveri nuk mund ta hapi skedarin!";
+                    }
+                } else {
+                    response = "Format gabim! write|file.txt|teksti";
+                }
+            }
+        }
+
 
