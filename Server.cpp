@@ -62,14 +62,14 @@ int main(){
             if (senderIP != IP_ADMINIT) {
                 response = "GABIM: Ju nuk keni autorizim per te shkruar! Vetem Admini lejohet.";
                 std::cout << "Tentim i paautorizuar per shkrim nga: " << senderIP << std::endl;
+             }
+            else {
+                size_t first = msg.find("|");
+                size_t second = msg.find("|", first + 1);
+
+                if (second != std::string::npos) {
+                    std::string filename = msg.substr(first + 1, second - first - 1);
+                    std::string text = msg.substr(second + 1);
 
 
 
-    }
-
-
-
-
-
-
-}
