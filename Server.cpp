@@ -31,7 +31,7 @@ int main(){
     std::cout <<"Serveri u ndey ne porten "<<PORT <<"..." <<std::endl;
     std::cout << "Vetem Admini ("<<IP_ADMINIT<<") ka leje te shkruaj."<<std::endl;
 
-    while(true){
+    while(true)
         clientLen=sizeof(clientAddr);
         memset(buffer,0,BUFFER_SIZE);
 
@@ -56,6 +56,20 @@ int main(){
                 response="Gabim FIle nuk ekziston!";
             }
         }
+
+       else if (msg.rfind("write|", 0) == 0) {
+            
+            if (senderIP != IP_ADMINIT) {
+                response = "GABIM: Ju nuk keni autorizim per te shkruar! Vetem Admini lejohet.";
+                std::cout << "Tentim i paautorizuar per shkrim nga: " << senderIP << std::endl;
+
+
+
     }
+
+
+
+
+
 
 }
