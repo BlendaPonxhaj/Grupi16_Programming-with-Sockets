@@ -56,6 +56,47 @@ int main(){
                 response="Gabim FIle nuk ekziston!";
             }
         }
+
+       else if (msg.rfind("write|", 0) == 0) {
+            
+            if (senderIP != IP_ADMINIT) {
+                response = "GABIM: Ju nuk keni autorizim per te shkruar! Vetem Admini lejohet.";
+                std::cout << "Tentim i paautorizuar per shkrim nga: " << senderIP << std::endl;
+             }
+            else {
+                size_t first = msg.find("|");
+                size_t second = msg.find("|", first + 1);
+
+                if (second != std::string::npos) {
+                    std::string filename = msg.substr(first + 1, second - first - 1);
+                    std::string text = msg.substr(second + 1);
+
+
+                    std::ofstream file(filename, std::ios::app);
+                    if (file.is_open()) {
+                        file << text << "\n";
+                        file.flush();
+                        file.close();
+                        response = "Sukses: U shkrua me sukses nga Admini!";
+                        std::cout << "Admini shkruajti ne " << filename << std::endl;
+                    } else {
+                        response = "Gabim: Serveri nuk mund ta hapi skedarin!";
+                    }
+                } else {
+                    response = "Format gabim! write|file.txt|teksti";
+                }
+            }
+        }
+        else {
+            response = "Komande e panjohur!";
+        }
+
+        sendto(serverSocket, response.c_str(), (int)response.length(), 0, (sockaddr*)&clientAddr, clientLen);
     }
 
+    closesocket(serverSocket);
+    WSACleanup();
+    return 0;
 }
+
+
