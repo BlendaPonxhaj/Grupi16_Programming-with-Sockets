@@ -47,3 +47,8 @@ while (true) {
         std::cout << "Gabim ne dergim: " << WSAGetLastError() << std::endl;
         continue;
     }
+
+char buffer[BUFFER_SIZE];
+int serverLen = sizeof(serverAddr);
+int n = recvfrom(clientSocket, buffer, BUFFER_SIZE - 1, 0,
+                 (sockaddr*)&serverAddr, &serverLen);
