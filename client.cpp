@@ -59,3 +59,6 @@ if (n == SOCKET_ERROR) {
         std::cout << "Pergjigja nga serveri:\n" << buffer << std::endl;
     }
 }
+closesocket(clientSocket);
+WSACleanup();
+return 0;
